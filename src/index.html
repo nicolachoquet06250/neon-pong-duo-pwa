@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Retro multiplayer Pong on Meta Ray-Ban Display and phone. Auto-pairing, WebRTC or WebSocket." />
+    <meta name="mrbd-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#020b10" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/icons/pong-192.png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/pong-192.png" />
+    <title>NEON PONG // DUO</title>
+  </head>
+  <body>
+    <!-- Rendered without any external CSS/JS. If this stays visible, the module never initialized. -->
+    <div id="bootStatus" role="status" style="position:fixed;z-index:9999;top:0;left:0;right:0;padding:12px 16px;border-bottom:2px solid #44ffe0;background:#000;color:#fff;font:700 16px/1.4 system-ui,Arial,sans-serif;overflow-wrap:anywhere">PONG : HTML chargé · démarrage JavaScript…</div>
+    <script>
+      window.addEventListener('error', function (event) {
+        var status = document.getElementById('bootStatus');
+        if (status) status.textContent = 'PONG : erreur JS · ' + (event.message || 'ressource non chargée');
+      });
+      window.addEventListener('unhandledrejection', function (event) {
+        var status = document.getElementById('bootStatus');
+        if (status) status.textContent = 'PONG : erreur async · ' + String(event.reason || 'inconnue');
+      });
+    </script>
+    <main class="app" id="app">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Neon Pong, retour à l'accueil"><span class="brand-symbol">◫</span> NEON<span class="accent">PONG</span><span class="brand-suffix">//DUO</span></a>
+        <span class="edition">1984 / <span>2026</span></span>
+      </header>
+      <section class="intro desktop-unavailable hidden" id="intro" aria-labelledby="desktopUnavailableTitle">
+        <div class="desktop-unavailable__frame">
+          <p class="eyebrow" data-i18n="tag"></p>
+          <img class="desktop-unavailable__logo" src="/favicon.svg" alt="Logo NEON PONG" width="96" height="96" />
+          <h1 id="desktopUnavailableTitle">NEON<span class="accent">PONG</span><span class="brand-suffix">//DUO</span></h1>
+          <div class="desktop-unavailable__divider" aria-hidden="true"><span></span><b>◆</b><span></span></div>
+          <h2 data-i18n="pcUnavailableTitle"></h2>
+          <p data-i18n="pcUnavailableBody"></p>
+          <div class="desktop-unavailable__tag" data-i18n="pcUnavailablePlatforms"></div>
+        </div>
+      </section>
+      <section class="offline-screen hidden" id="offlineScreen" aria-labelledby="offlineTitle" role="status">
+        <div class="offline-screen__frame">
+          <img src="/icons/pong-192.png" alt="" width="88" height="88" />
+          <p class="eyebrow" data-i18n="offlineLabel"></p>
+          <h1 id="offlineTitle" data-i18n="offlineTitle"></h1>
+          <p data-i18n="offlineBody"></p>
+          <button class="solid-btn" id="offlineRetry" type="button" data-i18n="offlineRetry"></button>
+          <small data-i18n="offlineHint"></small>
+        </div>
+      </section>
+      <section class="room-panel hidden" id="roomPanel">
+        <div class="panel-top"><span id="roomTitle"></span><button id="backFromRoom" class="text-btn" data-i18n="menu"></button></div>
+        <p id="roomHint" class="room-hint"></p>
+        <div id="hostInvite" class="hidden">
+          <p id="hostLobbyName" class="lobby-name"></p><div class="auto-discovery"><span class="radar" aria-hidden="true">◎</span><div><strong data-i18n="lobbyOpen"></strong><p data-i18n="lobbyHelp"></p></div></div>
+          <div id="hostPair" class="approval hidden">
+            <span data-i18n="pairIncoming"></span><strong id="hostPairCode" class="pair-code"></strong>
+            <p data-i18n="compareCode"></p>
+            <div class="pair-actions"><button id="approveGuest" class="solid-btn" data-i18n="approve"></button><button id="rejectGuest" class="outline-btn" data-i18n="reject"></button></div>
+          </div>
+        </div>
+        <div id="guestInvite" class="hidden">
+          <p class="lobby-heading" data-i18n="nearbyGames"></p>
+          <div id="availableRooms" class="room-list" aria-live="polite"></div>
+          <div id="guestPair" class="approval hidden"><span data-i18n="pairWaiting"></span><strong id="guestPairCode" class="pair-code"></strong><p data-i18n="compareCode"></p></div>
+        </div>
+        <p class="status" id="roomStatus" aria-live="polite"></p>
+        <p id="roomTransport" class="transport-info" aria-live="polite"></p>
+        <button id="startGame" class="solid-btn hidden" data-i18n="start"></button>
+      </section>
+      <section id="gameSection" class="game-section hidden">
+        <div class="score-line" aria-live="polite"><span class="team-phone" data-i18n="rolePhone"></span><span id="score" class="score">00 <b>:</b> 00</span><span class="team-glasses" data-i18n="roleGlasses"></span></div>
+        <div class="board" id="board">
+          <div id="stage" class="pong-stage" tabindex="0" role="img" aria-label="Terrain de Pong. Glisser ou utiliser les flèches haut et bas.">
+            <div class="pong-rail pong-rail--top" aria-hidden="true"></div>
+            <div class="pong-rail pong-rail--bottom" aria-hidden="true"></div>
+            <div class="pong-center-line" aria-hidden="true"></div>
+            <div id="paddleLeft" class="pong-paddle pong-paddle--left" aria-hidden="true"></div>
+            <div id="paddleRight" class="pong-paddle pong-paddle--right" aria-hidden="true"></div>
+            <div id="pongBallGlow" class="pong-ball-glow" aria-hidden="true"></div>
+            <div class="pong-trail" hidden aria-hidden="true"></div>
+            <div class="pong-trail" hidden aria-hidden="true"></div>
+            <div class="pong-trail" hidden aria-hidden="true"></div>
+            <div class="pong-trail" hidden aria-hidden="true"></div>
+            <div class="pong-trail" hidden aria-hidden="true"></div>
+            <div id="pongBall" class="pong-ball" aria-hidden="true"></div>
+          </div>
+          <div id="roundBanner" class="round-banner" aria-live="polite"></div></div>
+        <div class="under-board"><span id="controlHelp"></span><span class="rules" data-i18n="inProgress"></span></div>
+        <div class="game-actions"><button id="replay" class="solid-btn hidden" data-i18n="replay"></button><button id="exitGame" class="text-btn" data-i18n="menu"></button></div>
+        <p id="gameTransport" class="transport-info"></p><p class="status small" id="gameStatus" aria-live="polite"></p>
+      </section>
+      <footer><span>© NEON ARCADE SYSTEMS</span><span>AUTO PAIR // 30 FPS</span></footer>
+    </main>
+    <script type="module" src="/main.ts"></script>
+  </body>
+</html>

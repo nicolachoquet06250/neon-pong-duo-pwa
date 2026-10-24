@@ -1,0 +1,167 @@
+:root{font-family:'Courier New',monospace;color:#f7f6ec;background:#000;font-synthesis:none;text-rendering:geometricPrecision}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#000;touch-action:none}body{overflow-x:hidden}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,#stage:focus-visible{outline:3px solid #f3ee62;outline-offset:4px}button:disabled{opacity:.45;cursor:default}a{color:inherit;text-decoration:none}.hidden{display:none!important}
+.app{min-height:100dvh;width:min(960px,100%);padding:0 clamp(12px,3.5vw,34px);margin:auto;display:flex;flex-direction:column}.topbar{height:92px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #253236}.brand{font-size:clamp(17px,2.5vw,25px);font-weight:900;letter-spacing:-1.2px;white-space:nowrap}.brand-symbol{font-size:23px;color:#39f8ec;margin-right:10px}.brand .accent{color:#39f8ec}.brand-suffix{color:#84999c;font-size:.65em;letter-spacing:0}.edition{color:#7a9297;font-size:12px}.edition span{color:#ffc75d}.intro{padding:clamp(32px,6vw,70px) 0 55px;text-align:center;flex:1}.eyebrow{color:#3af0e3;font-weight:bold;letter-spacing:.21em;font-size:13px}.intro h1{font-weight:900;font-size:clamp(76px,16vw,160px);line-height:1.1;letter-spacing:-.12em;margin:10px 0 0;text-shadow:4px 4px 0 #283134;padding-right:.1em}.separator{color:#ff5c81}.title-outline{color:transparent;-webkit-text-stroke:2px #f9f9ef;text-shadow:none}.lead{font-size:19px;letter-spacing:.4em;color:#829a9d;margin:4px auto 38px;font-weight:bold}.lead span{color:#f0f2e9}.lead i{color:#ff5c81;font-style:normal}.mini-board{height:120px;border-top:2px solid #244449;border-bottom:2px solid #244449;position:relative;max-width:530px;margin:auto auto 42px;display:flex;align-items:center;justify-content:space-between;padding:0 35px}.mini-board:before{content:'';position:absolute;top:0;bottom:0;left:50%;width:1px;background:repeating-linear-gradient(to bottom,#8bbabb 0 10px,transparent 10px 18px)}.mini-board b{height:60px;width:9px;background:#39f8ec;box-shadow:0 0 16px #39f8ec4f}.mini-board b:last-child{background:#ff5c81;box-shadow:0 0 16px #ff5c814f}.mini-board span{color:#fff;font-size:23px;position:absolute;left:50%;top:35%;transform:translateX(-50%)}.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:720px;margin:auto}.mode-btn{border:1px solid #41d7d2;background:#061519;color:#fff;text-align:left;min-height:146px;padding:22px 21px;position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:20px;transition:transform .16s,background .16s}.mode-btn:hover{background:#093036;transform:translateY(-2px)}.mode-btn.guest{background:#170c15;border-color:#b84d6e}.mode-btn.guest:hover{background:#2a1121}.mode-id{font-size:13px;color:#78c9c7;letter-spacing:.15em}.guest .mode-id{color:#ee809e}.mode-btn strong{font-size:clamp(15px,2.25vw,20px);letter-spacing:-.03em}.mode-arrow{position:absolute;right:19px;top:19px;font-size:28px;color:#3af0e3}.guest .mode-arrow{color:#ff5c81}
+.room-panel{width:min(700px,100%);margin:55px auto auto;padding:27px;border:1px solid #36565b;background:#0a0e11;min-height:240px}.panel-top{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:22px;font-weight:900;color:#35e3d9}.room-hint{color:#bac9ca;line-height:1.55;font-size:15px}.outline-btn{padding:12px 15px;background:transparent;color:#e8f9f7;border:1px solid #3c9b9a;font-size:13px}.status{font-size:13px;min-height:20px;color:#84cfc9;margin:24px 0;letter-spacing:.06em}.status:before{content:'●';margin-right:10px;color:#ffc75d}.status.error{color:#ff7999}.status.error:before{color:#ff7999}.solid-btn{background:#3af0e3;border:1px solid #3af0e3;color:#061216;padding:15px 20px;font-weight:900;text-transform:uppercase;min-height:52px;letter-spacing:.07em}.solid-btn:hover{background:#adfff6}.text-btn{background:none;border:0;color:#8db7bb;padding:10px 3px;text-decoration:underline;text-underline-offset:4px}.text-btn:hover{color:#fff}
+.game-section{padding-top:28px;flex:1;display:flex;flex-direction:column;justify-content:center}.score-line{display:flex;align-items:center;justify-content:space-between;gap:10px;width:min(800px,100%);margin:0 auto 14px}.score{font-size:clamp(35px,7.8vw,66px);font-weight:900;white-space:nowrap;letter-spacing:.1em}.score b{color:#496368;font-size:.7em}.team-phone{color:#3af0e3;font-weight:900}.team-glasses{color:#ff6b92;font-weight:900}.team-phone,.team-glasses{font-size:clamp(11px,2.2vw,17px)}.board{position:relative;width:min(800px,100%);aspect-ratio:5/3;margin:0 auto;background:#000;overflow:hidden;touch-action:none;user-select:none}#stage{display:block;width:100%;height:100%;touch-action:none}.round-banner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:900;color:#f8ee89;font-size:clamp(17px,3.3vw,28px);text-shadow:0 2px 12px #000,0 0 20px #000;pointer-events:none;letter-spacing:.06em;padding:20px}.under-board{width:min(800px,100%);margin:13px auto;display:flex;justify-content:space-between;gap:20px;align-items:center;font-size:clamp(11px,1.8vw,14px);color:#8fc5c6}.rules{color:#dba66e;text-align:right}.game-actions{display:flex;justify-content:center;align-items:center;gap:25px;margin:18px 0 0}.small{text-align:center;margin:10px 0}.game-section .status{min-height:20px}footer{min-height:62px;border-top:1px solid #253236;display:flex;align-items:center;justify-content:space-between;color:#58787c;font-size:11px;letter-spacing:.1em}
+@media(max-width:650px){.topbar{height:73px}.app{padding-inline:12px}.intro{padding-top:55px}.intro h1{font-size:clamp(59px,14.5vw,95px)}.mini-board{height:90px}.mini-board b{height:44px}.mode-grid{grid-template-columns:1fr;gap:12px}.mode-btn{min-height:105px;padding:15px 18px;gap:11px}.room-panel{margin-top:30px;padding:15px}.score{letter-spacing:0}.under-board{display:block;text-align:center}.rules{display:block;text-align:center;margin-top:8px}.game-section{padding-top:20px}.edition{display:none}}
+
+/* Meta Display 600×600: keep canvas on black and menus contained on visible dark gray. */
+@media(min-width:520px) and (max-width:650px) and (max-height:680px){.topbar{height:53px}.intro{padding:15px 0}.intro h1{font-size:70px}.mini-board{height:72px;margin-bottom:16px}.mode-grid{grid-template-columns:1fr 1fr}.mode-btn{min-height:92px}.room-panel{margin-top:18px}.game-section{padding-top:8px}.score-line{margin-bottom:4px}.score{font-size:37px}.board{width:min(690px,100%)}.under-board{margin:5px auto}.game-actions{margin:5px auto}.game-actions .solid-btn{min-height:40px;padding:6px 12px}.game-section .status{margin:2px auto}footer{min-height:30px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+/* Anonymous lobby discovery / phone confirmation */
+.auto-discovery{display:flex;gap:18px;align-items:center;margin:26px 0 10px;padding:20px;background:#081d20;border-left:3px solid #3af0e3}
+.auto-discovery strong{font-size:16px;color:#c8fffb}.auto-discovery p{color:#8eadaf;line-height:1.5;font-size:13px;margin:8px 0 0}
+.radar{color:#3af0e3;font-size:46px;animation:radar-pulse 2.5s infinite}
+@keyframes radar-pulse{50%{opacity:.35;transform:scale(.94)}}
+.approval{background:#121b20;border:1px solid #f8d47f;padding:20px;margin:20px 0;color:#f8e4ad;display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.approval span{font-weight:bold;letter-spacing:.06em;font-size:14px}.approval p{font-size:13px;line-height:1.4;color:#ddd5c2;margin:0}
+.pair-code{font-size:clamp(36px,9vw,58px);letter-spacing:.25em;color:white}
+.pair-actions{display:flex;gap:12px;flex-wrap:wrap}.pair-actions button{min-height:48px}
+.lobby-heading{margin-top:28px;color:#3af0e3;font-weight:bold;letter-spacing:.13em}
+.room-list{display:flex;flex-direction:column;gap:10px;margin:14px 0}
+.room-choice{text-align:left;padding:18px;background:#092125;color:white;border:1px solid #3c8c8c;font-size:17px;font-weight:bold;letter-spacing:.1em}
+.room-choice:hover:not(:disabled){background:#1b4045}.room-choice:disabled{opacity:.55}
+.lobby-empty{color:#9ebabe;line-height:1.65;font-size:14px}
+.transport-info{font-size:12px;min-height:18px;letter-spacing:.08em;color:#b3b5a5}.transport-info[data-mode='p2p']{color:#4ef4de}
+.room-panel .status{margin:18px 0}
+@media(max-width:650px){.auto-discovery{padding:12px;margin-top:15px}.radar{font-size:32px}.approval{padding:12px}.pair-actions{gap:8px}}
+
+.lobby-name{color:#f0d68d;font-size:22px;font-weight:900;letter-spacing:.15em;margin:22px 0 0}
+
+
+/* Android-only entrypoint: desktop gets the branded, inaccessible-game state. */
+.desktop-unavailable{display:flex;justify-content:center;align-items:center;padding:clamp(28px,5vw,68px) 0;min-height:min(750px,calc(100dvh - 200px))}
+.desktop-unavailable__frame{width:min(650px,100%);padding:clamp(24px,5vw,52px);border:1px solid #31575b;background:linear-gradient(150deg,#091519,#030607 70%);box-shadow:inset 0 0 0 1px #0b252a;text-align:center}
+.desktop-unavailable__logo{display:block;width:96px;height:96px;max-width:24vw;margin:24px auto 14px;image-rendering:pixelated}
+.desktop-unavailable h1{font-size:clamp(34px,7vw,67px);letter-spacing:-.065em;line-height:1.08;margin:10px 0 15px;padding:0;text-shadow:none;white-space:nowrap}
+.desktop-unavailable h1 .accent{color:#39f8ec}
+.desktop-unavailable h1 .brand-suffix{font-size:.4em;letter-spacing:0;vertical-align:middle}
+.desktop-unavailable__divider{display:flex;align-items:center;gap:16px;max-width:270px;margin:12px auto 30px;color:#ff5c81;font-size:20px}
+.desktop-unavailable__divider span{height:1px;flex:1;background:#355155}
+.desktop-unavailable h2{color:#ff7894;font-size:clamp(18px,3.1vw,25px);letter-spacing:.07em;line-height:1.3;margin:0 0 17px}
+.desktop-unavailable p:not(.eyebrow){font-size:clamp(13px,1.8vw,16px);line-height:1.8;color:#bacbd0;max-width:520px;margin:0 auto 25px}
+.desktop-unavailable__tag{border:1px solid #327a79;display:inline-block;padding:12px 16px;color:#38eee0;font-weight:bold;letter-spacing:.09em;font-size:clamp(10px,1.5vw,13px)}
+
+/* Phone: compact vertical lobby, scrollable when necessary. The board keeps
+   touch-action:none so paddle gestures are never interpreted as scrolling.
+   Scoped to the detected phone role: the Meta Display 600x600 layout is unchanged. */
+html[data-device-mode="phone"],
+html[data-device-mode="phone"] body {
+  touch-action: pan-y;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+}
+html[data-device-mode="phone"] .app {
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-inline: clamp(10px, 3vw, 18px);
+}
+html[data-device-mode="phone"] .topbar {
+  height: clamp(46px, 8dvh, 62px);
+  min-height: 46px;
+  flex-shrink: 0;
+}
+html[data-device-mode="phone"] .brand { font-size: clamp(16px, 4.4vw, 22px); }
+html[data-device-mode="phone"] .brand-symbol { margin-right: 6px; }
+html[data-device-mode="phone"] .room-panel {
+  min-height: 0;
+  margin: clamp(8px, 2dvh, 16px) auto 12px;
+  padding: clamp(12px, 3vw, 18px);
+}
+html[data-device-mode="phone"] .panel-top { font-size: clamp(15px, 4vw, 19px); }
+html[data-device-mode="phone"] .room-hint { margin: 8px 0 6px; font-size: 13px; line-height: 1.4; }
+html[data-device-mode="phone"] .lobby-name { margin: 10px 0 0; font-size: 16px; }
+html[data-device-mode="phone"] .auto-discovery {
+  margin: 12px 0 4px;
+  padding: 12px;
+  gap: 12px;
+}
+html[data-device-mode="phone"] .auto-discovery strong { font-size: 13px; }
+html[data-device-mode="phone"] .auto-discovery p { font-size: 12px; line-height: 1.35; margin-top: 4px; }
+html[data-device-mode="phone"] .radar { font-size: 27px; }
+html[data-device-mode="phone"] .approval { margin: 12px 0; padding: 12px; gap: 8px; }
+html[data-device-mode="phone"] .pair-code { font-size: clamp(28px, 8vw, 48px); }
+html[data-device-mode="phone"] .pair-actions button { min-height: 44px; }
+html[data-device-mode="phone"] .room-panel .status { margin: 10px 0 6px; }
+html[data-device-mode="phone"] .transport-info { margin: 6px 0; min-height: 0; }
+html[data-device-mode="phone"] .lobby-heading { margin-top: 12px; }
+html[data-device-mode="phone"] .room-list { gap: 8px; margin: 8px 0; }
+html[data-device-mode="phone"] .room-choice { padding: 12px; font-size: 14px; }
+html[data-device-mode="phone"] .game-section {
+  justify-content: safe center;
+  min-height: 0;
+  padding-top: clamp(4px, 1.4dvh, 10px);
+}
+html[data-device-mode="phone"] .score-line { margin-bottom: 6px; gap: 5px; }
+html[data-device-mode="phone"] .score { font-size: clamp(28px, 7vw, 42px); }
+html[data-device-mode="phone"] .team-phone,
+html[data-device-mode="phone"] .team-glasses { font-size: clamp(9px, 2.6vw, 13px); }
+html[data-device-mode="phone"] .board {
+  width: min(100%, 800px, max(160px, calc((100dvh - 214px) * 5 / 3)));
+  max-width: 100%;
+  flex-shrink: 0;
+  touch-action: none;
+}
+html[data-device-mode="phone"] .under-board {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin: 7px auto 2px;
+  font-size: 11px;
+}
+html[data-device-mode="phone"] .rules { display: inline; margin: 0; }
+html[data-device-mode="phone"] .game-actions { gap: 12px; margin: 7px 0 0; }
+html[data-device-mode="phone"] .game-actions .solid-btn { min-height: 44px; padding: 9px 14px; }
+html[data-device-mode="phone"] .game-actions .text-btn { min-height: 44px; padding: 10px; }
+html[data-device-mode="phone"] .game-section .status { margin: 4px 0 0; min-height: 0; font-size: 11px; }
+html[data-device-mode="phone"] footer {
+  flex-shrink: 0;
+  min-height: 32px;
+  margin-top: auto;
+  font-size: 9px;
+  letter-spacing: 0;
+}
+@media(max-height:550px) {
+  html[data-device-mode="phone"] .topbar { height: 42px; min-height: 42px; }
+  html[data-device-mode="phone"] .room-panel { margin-block: 6px; }
+  html[data-device-mode="phone"] .game-section { padding-top: 2px; }
+  html[data-device-mode="phone"] .score-line { margin-bottom: 2px; }
+  html[data-device-mode="phone"] .score { font-size: 27px; }
+  html[data-device-mode="phone"] .board {
+    width: min(100%, max(160px, calc((100dvh - 220px) * 5 / 3)));
+  }
+  html[data-device-mode="phone"] .under-board { margin-top: 3px; }
+  html[data-device-mode="phone"] .game-actions { margin-top: 3px; }
+  html[data-device-mode="phone"] footer { display: none; }
+}
+
+/* v1.1.8: Plain HTML/CSS playfield. Unlike WebGL, paddles and ball follow the
+   same rendering path as the visible HTML score on Meta Display and Android. */
+.pong-stage { position:absolute;inset:0;display:block;width:100%;height:100%;overflow:hidden;touch-action:none;user-select:none;isolation:isolate }
+.pong-rail { position:absolute;left:1.75%;right:1.75%;height:2px;background:#557b80;opacity:.82 }
+.pong-rail--top { top:3.54% }
+.pong-rail--bottom { bottom:3.54% }
+.pong-center-line { position:absolute;top:5%;bottom:5%;left:50%;width:3px;transform:translateX(-50%);background:repeating-linear-gradient(to bottom,#a0c2c4 0 10px,transparent 10px 19px);opacity:.8 }
+.pong-paddle { position:absolute;top:50%;width:1.75%;min-width:7px;height:19.1667%;transform:translateY(-50%);z-index:2;will-change:top }
+.pong-paddle--left { left:3.75%;background:#39f8ec;box-shadow:0 0 14px #39f8ec99 }
+.pong-paddle--right { left:94.5%;background:#ff597e;box-shadow:0 0 14px #ff597e99 }
+.pong-ball,.pong-ball-glow,.pong-trail { position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;will-change:top,left }
+.pong-ball {width:2.25%;min-width:9px;height:3.75%;min-height:9px;background:#fffdf0;z-index:4;box-shadow:0 0 12px #fff9bfcc }
+.pong-ball-glow { width:3.875%;min-width:15px;height:6.458%;min-height:15px;background:#f9f7e9;opacity:.16;filter:blur(5px);z-index:3 }
+.pong-trail { width:1%;min-width:4px;height:1.667%;min-height:4px;background:#fff8d9;opacity:.28;z-index:2 }
+.pong-trail[hidden] { display:none!important }
+
+
+/* Cached PWA shell remains readable and usable without multiplayer networking. */
+.offline-screen{flex:1;display:flex;align-items:center;justify-content:center;min-height:0;padding:18px 0 28px}
+.offline-screen__frame{width:min(560px,100%);padding:clamp(20px,5vw,45px) clamp(16px,5vw,35px);border:1px solid #306a6a;background:linear-gradient(140deg,#071f23,#04090b 80%);text-align:center;display:flex;flex-direction:column;align-items:center;gap:13px}
+.offline-screen__frame img{width:clamp(55px,13vh,88px);height:auto;aspect-ratio:1}
+.offline-screen__frame .eyebrow{margin:0;color:#ff779a}
+.offline-screen__frame h1{font-size:clamp(24px,6.5vw,38px);line-height:1.1;letter-spacing:.04em;color:#42f4df;margin:0}
+.offline-screen__frame p:not(.eyebrow){margin:0;color:#e0edef;line-height:1.5;font-size:clamp(13px,3vw,16px)}
+.offline-screen__frame small{color:#9eaeb0;line-height:1.4;font-size:11px}
+.offline-screen__frame button{min-height:44px;margin-top:6px}
+html[data-device-mode="glasses"] .offline-screen{padding-block:8px}
+html[data-device-mode="glasses"] .offline-screen__frame{padding:14px;gap:8px}
+html[data-device-mode="glasses"] .offline-screen__frame img{width:60px}

@@ -1,0 +1,19 @@
+{
+  "id": "/",
+  "name": "NEON PONG // DUO",
+  "short_name": "Neon Pong",
+  "description": "Pong rétro en duo : téléphone Android et Meta Ray-Ban Display.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#020b10",
+  "theme_color": "#020b10",
+  "lang": "fr",
+  "icons": [
+    { "src": "/icons/pong-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/pong-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/pong-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icons/pong-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Pong">
+  <!-- Meta's launcher tints transparent monochrome artwork. No background tile. -->
+  <path fill="#fff" d="M11 14h8v36h-8zM45 14h8v36h-8z"/>
+  <path fill="#fff" d="M30 7h4v5h-4zm0 10h4v5h-4zm0 32h4v5h-4zm0 10h4v2h-4z" opacity=".72"/>
+  <rect fill="#fff" x="28" y="29" width="8" height="8" rx="1" />
+</svg>

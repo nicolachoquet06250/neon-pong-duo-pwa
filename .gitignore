@@ -1,0 +1,9 @@
+node_modules/
+dist/
+coverage/
+.env
+.DS_Store
+
+# Development TLS private keys/certificates must stay local.
+.cert/
+/build/

@@ -1,0 +1,37 @@
+{
+  "name": "neon-pong-display",
+  "version": "1.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Retro multiplayer Pong phone + Meta Ray-Ban Display, auto pairing, WebRTC with WebSocket fallback.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "node server/index.mjs --dev",
+    "build": "tsc --noEmit && vite build && node scripts/finalize-pwa.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:node": "node --test tests/signaling.integration.mjs tests/local-network.test.mjs tests/diagnostics.test.mjs tests/prepare-production.test.mjs tests/ui-layout.test.mjs tests/render-markup.test.mjs tests/pwa.test.mjs",
+    "start": "node server/index.mjs",
+    "preview": "vite preview",
+    "test:signaling": "node --test tests/signaling.integration.mjs",
+    "test:all": "npm test && npm run test:node && npm run test:https",
+    "test:https": "node --test tests/dev.https.integration.mjs",
+    "glasses": "npm run build && npm start",
+    "build:server": "node scripts/prepare-production.mjs",
+    "smoke:production": "node scripts/smoke-production.mjs",
+    "build:deploy": "npm run build && npm run build:server && npm install --prefix build --omit=dev --ignore-scripts --no-audit --no-fund && npm run smoke:production"
+  },
+  "dependencies": {
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "@types/ws": "^8.18.1",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.0",
+    "vitest": "^3.2.4",
+    "selfsigned": "^5.5.0"
+  }
+}

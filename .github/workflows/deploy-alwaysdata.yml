@@ -1,0 +1,83 @@
+name: Test, build and deploy NEON PONG to alwaysdata
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Never let two deployments overwrite the same target simultaneously.
+concurrency:
+  group: neon-pong-alwaysdata-production
+  cancel-in-progress: false
+
+jobs:
+  test-build-deploy:
+    name: Tests → client + server → SCP → restart
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    environment: production
+
+    steps:
+      - name: Récupérer le projet
+        uses: actions/checkout@v4
+
+      - name: Configurer Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+        # Add a committed package-lock.json to enable reproducible npm ci.
+
+      - name: Installer les dépendances
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci --no-audit --no-fund
+          else
+            echo '::warning::package-lock.json absent: npm install sera utilisé. Commitez un lockfile pour des builds reproductibles.'
+            npm install --no-audit --no-fund
+          fi
+
+      - name: Exécuter tous les tests (Vitest, signalisation, HTTPS/WSS)
+        run: npm run test:all
+
+      - name: Compiler le client et préparer le serveur Node.js complet
+        run: npm run build:deploy
+
+      - name: Déployer build/ sur alwaysdata via SCP
+        uses: appleboy/scp-action@v1
+        with:
+          host: ${{ secrets.ALWAYSDATA_SSH_HOST }}
+          port: ${{ secrets.ALWAYSDATA_SSH_PORT }}
+          username: ${{ secrets.ALWAYSDATA_SSH_USER }}
+          password: ${{ secrets.ALWAYSDATA_SSH_PASSWORD }}
+          source: build
+          target: ${{ secrets.ALWAYSDATA_DEPLOY_PATH }}
+          strip_components: 1
+          overwrite: true
+          # Do not delete the target directory: may contain existing deployment or config.
+          rm: false
+
+      - name: Redémarrer le site Node.js via l'API REST alwaysdata
+        env:
+          ALWAYSDATA_API_KEY: ${{ secrets.ALWAYSDATA_API_KEY }}
+          ALWAYSDATA_ACCOUNT: ${{ secrets.ALWAYSDATA_ACCOUNT }}
+          ALWAYSDATA_SITE_ID: ${{ secrets.ALWAYSDATA_SITE_ID }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          : "${ALWAYSDATA_API_KEY:?Secret ALWAYSDATA_API_KEY manquant}"
+          : "${ALWAYSDATA_ACCOUNT:?Secret ALWAYSDATA_ACCOUNT manquant}"
+          : "${ALWAYSDATA_SITE_ID:?Secret ALWAYSDATA_SITE_ID manquant}"
+          if ! [[ "$ALWAYSDATA_SITE_ID" =~ ^[0-9]+$ ]]; then
+            echo 'ALWAYSDATA_SITE_ID doit être un entier positif.' >&2
+            exit 1
+          fi
+          curl --fail-with-body --silent --show-error \
+            --connect-timeout 10 --max-time 60 \
+            --request POST --basic \
+            --user "${ALWAYSDATA_API_KEY} account=${ALWAYSDATA_ACCOUNT}:" \
+            "https://api.alwaysdata.com/v1/site/${ALWAYSDATA_SITE_ID}/restart/"
+          echo 'Redémarrage du site demandé avec succès à alwaysdata.'

@@ -1,0 +1,9 @@
+node_modules
+dist
+.git
+coverage
+.env
+*.zip
+
+# Never copy local TLS private keys into the container image.
+.cert

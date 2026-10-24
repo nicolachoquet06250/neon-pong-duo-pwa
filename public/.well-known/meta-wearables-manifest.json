@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "name": "NEON PONG DUO",
+  "description": "Pong rétro à deux sur Meta Ray-Ban Display et téléphone Android.",
+  "appearance": {
+    "theme_color": "#39F8EC",
+    "icon": { "src": "../icons/meta-pong.svg" }
+  }
+}
