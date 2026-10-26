@@ -2,6 +2,10 @@
 
 ## Installation PWA et icône Meta Ray-Ban Display (v1.2.0)
 
+![Meta RayBan Display](./.github/medias/Meta-Ray-Ban-Display_Social-Share.webp)
+
+![Screenshot vidéo du jeu](./.github/medias/Screenshot-vidéo.png)
+
 La même application comporte **deux manifests distincts** :
 
 - `public/manifest.webmanifest` : installation de la **PWA Android** (mode `standalone`, icônes 192 / 512 PNG et variantes `maskable`). Sur Android Chrome, ouvrir l'adresse HTTPS de production, puis choisir **Installer l'application** dans le menu du navigateur.
